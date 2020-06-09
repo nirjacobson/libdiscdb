@@ -35,7 +35,7 @@ std::string DiscDB::Track::toJSON() const {
 
 DiscDB::Track DiscDB::Track::fromJSON(const std::string& json) {
     Json::Value value;
-    std::stringstream ss(json);
+    const std::stringstream ss(json);
     ss >> value;
 
     Builder builder;

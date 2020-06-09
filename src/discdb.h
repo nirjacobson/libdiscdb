@@ -1,5 +1,5 @@
-#ifndef DISCDB_DISCDB_H
-#define DISCDB_DISCDB_H
+#ifndef DISCDB_H
+#define DISCDB_H
 
 #include <sstream>
 #include <curlpp/cURLpp.hpp>
@@ -13,10 +13,10 @@
 #include "disc.h"
 
 namespace DiscDB {
-const std::string BaseURL = "http://discdb.discdb.io/api/v1.0";
+    const std::string BaseURL = "http://discdb.discdb.io/api/v1.0";
 
-Disc query(const Disc& disc);
-Disc create(const Disc& disc);
+    Disc query(const Disc& disc);
+    Disc create(const Disc& disc);
 }
 
-#endif // DISCDB_DISCDB_H
+#endif // DISCDB_H
