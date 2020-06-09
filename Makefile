@@ -6,23 +6,24 @@ LIBS		= jsoncpp
 CFLAGS  = -std=c++17 -O2 -Wall `pkg-config --cflags ${LIBS}` `curlpp-config --cflags` -g
 LDFLAGS = `pkg-config --libs ${LIBS}` `curlpp-config --libs`
 LIB			= discdb
+LIB_FILE = lib${LIB}.so
 
-all: build ${LIB}
+all: ${LIB_FILE}
 
-test: build ${LIB}
-	g++ ${CFLAGS} ${LDFLAGS} test.cc -L. -l${LIB} -o test
+${LIB_FILE}: ${OBJECTS}
+	g++ -shared $^ -o ${LIB_FILE} ${LDFLAGS}
 
-${LIB}: ${OBJECTS}
-	g++ -shared $^ -o lib$@.so ${LDFLAGS}
+format:
+	astyle -rnCS *.{h,cc}
 
-build/%.o : src/%.cc
-	g++ -c $< -fpic -o $@ ${CFLAGS}
+build/%.o : builddir src/%.cc
+	g++ -c $(word 2, $^) -fpic -o $@ ${CFLAGS}
 
-build:
+builddir:
 	mkdir -p build
 
 clean:
 	rm -rf build
-	rm -rf lib${LIB}.so
+	rm -rf ${LIB_FILE}
 	rm -rf test*
 
