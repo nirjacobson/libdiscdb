@@ -1,10 +1,10 @@
 #include "discdb.h"
 
-DiscDB::Disc DiscDB::query(const ::DiscDB::Disc& disc) {
+DiscDB::Disc DiscDB::find(const ::DiscDB::Disc& disc) {
     const cURLpp::Cleanup cleanup;
     cURLpp::Easy request;
 
-    request.setOpt(new curlpp::options::Url(DiscDB::BaseURL + "/query"));
+    request.setOpt(new curlpp::options::Url(DiscDB::BaseURL + "/find"));
 
     std::list<std::string> header;
     header.push_back("Content-Type: application/json");

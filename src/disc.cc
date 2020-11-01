@@ -67,7 +67,9 @@ std::string DiscDB::Disc::toJSON() const {
     if (!_id.empty())
         value[Fields::ID] = _id;
 
-    value[Fields::DiscID] = _discId;
+    std::stringstream sstream;
+    sstream << std::hex << _discId;
+    value[Fields::DiscID] = sstream.str();
 
     if (!_artist.empty())
         value[Fields::Artist] = _artist;
@@ -114,9 +116,14 @@ DiscDB::Disc DiscDB::Disc::fromJSON(const std::string& json) {
 
     Builder builder;
 
+    unsigned int discId;
+    std::stringstream sstream;
+    sstream << std::hex  << value[Fields::DiscID].asString();
+    sstream >> discId;
+
     builder
     .id(value[Fields::ID].asString())
-    .discId(value[Fields::DiscID].asUInt())
+    .discId(discId)
     .artist(value[Fields::Artist].asString())
     .title(value[Fields::Title].asString())
     .year(value[Fields::Year].asUInt())

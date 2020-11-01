@@ -13,9 +13,9 @@
 #include "disc.h"
 
 namespace DiscDB {
-    const std::string BaseURL = "http://discdb.discdb.io/api/v1.0";
+    const std::string BaseURL = "http://discdb.io/api/v1.0";
 
-    Disc query(const Disc& disc);
+    Disc find(const Disc& disc);
     Disc create(const Disc& disc);
 }
 

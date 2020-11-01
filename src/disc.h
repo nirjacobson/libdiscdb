@@ -3,6 +3,8 @@
 
 #include <string>
 #include <vector>
+#include <sstream>
+#include <iostream>
 #include <json/value.h>
 
 #include "track.h"
@@ -51,7 +53,7 @@ namespace DiscDB {
     };
 
     class Disc::Builder {
-        
+
         public:
 
             Builder& id(const std::string& id);

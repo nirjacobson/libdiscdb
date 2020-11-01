@@ -31,7 +31,7 @@ namespace DiscDB {
     };
 
     class Track::Builder {
-        
+
         public:
 
             Builder& frameOffset(const unsigned int frameOffset);
