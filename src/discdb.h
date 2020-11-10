@@ -13,7 +13,7 @@
 #include "disc.h"
 
 namespace DiscDB {
-    const std::string BaseURL = "http://discdb.io/api/v1.0";
+    const std::string BaseURL = "https://discdb.io/api/v1.0";
 
     Disc find(const Disc& disc);
     Disc create(const Disc& disc);
