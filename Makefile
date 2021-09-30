@@ -7,11 +7,15 @@ CFLAGS   = -std=c++17 -O2 -Wall `pkg-config --cflags ${LIBS}` `curlpp-config --c
 LDFLAGS  = `pkg-config --libs ${LIBS}` `curlpp-config --libs`
 LIB			 = discdb
 LIB_FILE = lib${LIB}.so
+INCLUDE_DIR  = /usr/include/${LIB}
 
 all: build/ ${LIB_FILE}
 
 install: ${LIB_FILE}
 	sudo cp $< /usr/lib
+	sudo mkdir -p ${INCLUDE_DIR}
+	sudo cp src/*.h ${INCLUDE_DIR}
+
 
 ${LIB_FILE}: ${OBJECTS}
 	g++ -shared $^ -o ${LIB_FILE} ${LDFLAGS}
@@ -32,4 +36,4 @@ clean:
 
 distclean:
 	sudo rm -f /usr/lib/${LIB_FILE}
-
+	sudo rm -rf ${INCLUDE_DIR}
