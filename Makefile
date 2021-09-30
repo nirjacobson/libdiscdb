@@ -16,7 +16,6 @@ install: ${LIB_FILE}
 	sudo mkdir -p ${INCLUDE_DIR}
 	sudo cp src/*.h ${INCLUDE_DIR}
 
-
 ${LIB_FILE}: ${OBJECTS}
 	g++ -shared $^ -o ${LIB_FILE} ${LDFLAGS}
 
