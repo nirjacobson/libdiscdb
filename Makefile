@@ -20,7 +20,7 @@ format:
 	astyle -rnNCS *.{h,cc}
 
 build/%.o : src/%.cc
-	g++ -c $(word 2, $^) -fpic -o $@ ${CFLAGS}
+	g++ -c $< -fpic -o $@ ${CFLAGS}
 
 build/:
 	mkdir -p build
