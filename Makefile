@@ -8,7 +8,7 @@ LDFLAGS  = `pkg-config --libs ${LIBS}` `curlpp-config --libs`
 LIB			 = discdb
 LIB_FILE = lib${LIB}.so
 
-all: ${LIB_FILE}
+all: build/ ${LIB_FILE}
 
 install: ${LIB_FILE}
 	sudo cp $< /usr/lib
@@ -19,10 +19,10 @@ ${LIB_FILE}: ${OBJECTS}
 format:
 	astyle -rnNCS *.{h,cc}
 
-build/%.o : builddir src/%.cc
+build/%.o : src/%.cc
 	g++ -c $(word 2, $^) -fpic -o $@ ${CFLAGS}
 
-builddir:
+build/:
 	mkdir -p build
 
 clean:
