@@ -2,7 +2,7 @@ MODULES  = discdb	\
 				   disc		\
 				   track
 OBJECTS  = $(foreach MODULE, ${MODULES}, build/${MODULE}.o)
-LIBS		 = jsoncpp
+LIBS		 = curlpp jsoncpp
 CFLAGS   = -std=c++17 -O2 -Wall `pkg-config --cflags ${LIBS}` `curlpp-config --cflags` -g
 LDFLAGS  = `pkg-config --libs ${LIBS}` `curlpp-config --libs`
 LIB			 = discdb
