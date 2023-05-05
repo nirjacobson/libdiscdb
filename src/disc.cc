@@ -68,6 +68,7 @@ std::string DiscDB::Disc::toJSON() const {
         value[Fields::ID] = _id;
 
     std::stringstream sstream;
+    sstream.imbue(std::locale("C"));
     sstream << std::hex << _discId;
     value[Fields::DiscID] = sstream.str();
 
