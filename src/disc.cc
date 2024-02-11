@@ -11,6 +11,12 @@ const std::string DiscDB::Disc::Fields::Tracks       = "tracks";
 const std::string DiscDB::Disc::Fields::ExtendedData = "extendedData";
 const std::string DiscDB::Disc::Fields::PlayOrder    = "playOrder";
 
+DiscDB::Disc::Disc()
+    : _year(0)
+{
+
+}
+
 const std::string& DiscDB::Disc::id() const {
     return _id;
 }
@@ -78,7 +84,9 @@ std::string DiscDB::Disc::toJSON() const {
     if (!_title.empty())
         value[Fields::Title] = _title;
 
-    value[Fields::Year] = _year;
+    if (_year != 0) {
+        value[Fields::Year] = _year;
+    }
 
     if (!_genre.empty())
         value[Fields::Genre] = _genre;

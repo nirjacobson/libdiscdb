@@ -14,6 +14,7 @@ namespace DiscDB {
     class Disc {
 
         public:
+            Disc();
 
             class Builder;
             class Fields;
