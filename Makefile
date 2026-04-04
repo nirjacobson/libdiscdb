@@ -1,12 +1,10 @@
-MODULES  = discdb	\
-				   disc		\
-				   track
-OBJECTS  = $(foreach MODULE, ${MODULES}, build/${MODULE}.o)
-LIBS		 = curlpp jsoncpp
-CFLAGS   = -std=c++17 -O2 -Wall `pkg-config --cflags ${LIBS}` `curlpp-config --cflags` -g
-LDFLAGS  = `pkg-config --libs ${LIBS}` `curlpp-config --libs`
-LIB			 = discdb
-LIB_FILE = lib${LIB}.so
+MODULES      = discdb disc track
+OBJECTS      = $(foreach MODULE, ${MODULES}, build/${MODULE}.o)
+LIBS         = curlpp jsoncpp
+CFLAGS       = -std=c++17 -O2 -Wall `pkg-config --cflags ${LIBS}` `curlpp-config --cflags` -g
+LDFLAGS      = `pkg-config --libs ${LIBS}` `curlpp-config --libs`
+LIB	         = discdb
+LIB_FILE     = lib${LIB}.so
 INCLUDE_DIR  = /usr/include/${LIB}
 
 all: ${LIB_FILE}
