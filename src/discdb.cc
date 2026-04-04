@@ -11,7 +11,7 @@ DiscDB::Disc DiscDB::find(const ::DiscDB::Disc& disc) {
 
     request.setOpt(new curlpp::options::HttpHeader(header));
 
-    const std::string json = disc.toJSON();
+    const std::string json = disc.to_json();
 
     std::stringstream ss;
     request.setOpt(new curlpp::options::PostFields(json));
@@ -20,7 +20,7 @@ DiscDB::Disc DiscDB::find(const ::DiscDB::Disc& disc) {
 
     request.perform();
 
-    return Disc::fromJSON(ss.str());
+    return Disc::from_json(ss.str());
 }
 
 DiscDB::Disc DiscDB::create(const ::DiscDB::Disc& disc) {
@@ -34,7 +34,7 @@ DiscDB::Disc DiscDB::create(const ::DiscDB::Disc& disc) {
 
     request.setOpt(new curlpp::options::HttpHeader(header));
 
-    const std::string json = disc.toJSON();
+    const std::string json = disc.to_json();
 
     std::stringstream ss;
     request.setOpt(new curlpp::options::PostFields(json));
@@ -43,5 +43,5 @@ DiscDB::Disc DiscDB::create(const ::DiscDB::Disc& disc) {
 
     request.perform();
 
-    return Disc::fromJSON(ss.str());
+    return Disc::from_json(ss.str());
 }

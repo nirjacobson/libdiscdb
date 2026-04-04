@@ -16,27 +16,27 @@ namespace DiscDB {
             class Builder;
             class Fields;
 
-            unsigned int frameOffset() const;
+            unsigned int frame_offset() const;
             const std::string& title() const;
-            const std::string& extendedData() const;
+            const std::string& extended_data() const;
 
-            std::string toJSON() const;
-            static Track fromJSON(const std::string& json);
+            std::string to_json() const;
+            static Track from_json(const std::string& json);
 
         private:
 
-            unsigned int _frameOffset;
+            unsigned int _frame_offset;
             std::string _title;
-            std::string _extendedData;
+            std::string _extended_data;
     };
 
     class Track::Builder {
 
         public:
 
-            Builder& frameOffset(const unsigned int frameOffset);
+            Builder& frame_offset(const unsigned int frame_offset);
             Builder& title(const std::string& title);
-            Builder& extendedData(const std::string& extendedData);
+            Builder& extended_data(const std::string& extended_data);
             Track build() const;
 
         private:
