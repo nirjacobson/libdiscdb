@@ -9,7 +9,7 @@ LIB			 = discdb
 LIB_FILE = lib${LIB}.so
 INCLUDE_DIR  = /usr/include/${LIB}
 
-all: build/ ${LIB_FILE}
+all: ${LIB_FILE}
 
 install: ${LIB_FILE}
 	cp $< /usr/lib64
@@ -22,8 +22,8 @@ ${LIB_FILE}: ${OBJECTS}
 format:
 	astyle -rnNCS *.{h,cc}
 
-build/%.o : src/%.cc
-	g++ -c $< -fpic -o $@ ${CFLAGS}
+build/%.o : build/ src/%.cc
+	g++ -c $(word 2, $^) -fpic -o $@ ${CFLAGS}
 
 build/:
 	mkdir -p build
