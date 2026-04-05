@@ -10,9 +10,8 @@ INCLUDE_DIR  = /usr/include/${LIB}
 all: build/ ${LIB_FILE}
 
 install: ${LIB_FILE}
-	cp $< /usr/lib64
-	mkdir -p ${INCLUDE_DIR}
-	cp src/*.h ${INCLUDE_DIR}
+	install -D $< ${DESTDIR}/usr/lib64
+	install -D src/*.h ${INCLUDE_DIR}
 
 ${LIB_FILE}: ${OBJECTS}
 	g++ -shared $^ -o ${LIB_FILE} ${LDFLAGS}
