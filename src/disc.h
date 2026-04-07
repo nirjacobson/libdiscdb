@@ -11,18 +11,45 @@
 
 namespace DiscDB {
 
+    /**
+     * @brief The Disc class
+     * @details The Disc class represents one disc record in the DiscDB database.
+    */
     class Disc {
 
         public:
             Disc();
 
             class Builder;
-            class Fields;
+            class Properties;
 
+            /**
+             * @name  Audio Frames
+             * @brief A frame is a duration of audio.
+             * @see   <a href="https://ftp.osuosl.org/pub/netwinder/devteam/andrewm/udf/docs/Glossary_of_CD_terms.pdf"
+             *            target="_blank">
+             *            A Glossary Of CD And CD-ROM Terms.
+             *        </a>
+             * @{
+             */
+
+             /**
+             * @brief There are 75 audio frames per second.
+             */
             static constexpr const unsigned int FRAMES_PER_SECOND = 75;
+
+            /**
+             * @brief A convenience method.
+             * @param [in] frames must be a multiple of @ref FRAMES_PER_SECOND.
+             * 
+             * @{
+             */
             static inline unsigned int frames_to_seconds(unsigned int frames) {
                 return frames / FRAMES_PER_SECOND;
             }
+            /**
+             * @}
+             */
 
             const std::string& id() const;
             unsigned int disc_id() const;
@@ -36,8 +63,16 @@ namespace DiscDB {
             const std::string& extended_data() const;
             const std::vector<unsigned int>& play_order() const;
 
+            /**
+             * @name JSON Conversion Methods
+             * 
+             * @{
+             */
             std::string to_json() const;
             static Disc from_json(const std::string& json);
+            /**
+             * @}
+             */
 
         private:
 
@@ -53,6 +88,10 @@ namespace DiscDB {
             std::vector<unsigned int> _play_order;
     };
 
+    /**
+     * @brief The Disc builder
+     * @details Use the builder to construct a Disc object with your chosen property values.
+    */
     class Disc::Builder {
 
         public:
@@ -75,7 +114,11 @@ namespace DiscDB {
             Disc _disc;
     };
 
-    class Disc::Fields {
+    /**
+     * @brief Disc properties
+     * @details These constants are used to access property values in the JSON representation of a Disc.
+    */
+    class Disc::Properties {
         public:
             static const std::string Id;
             static const std::string DiscId;

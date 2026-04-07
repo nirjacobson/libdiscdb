@@ -1,15 +1,15 @@
 #include "disc.h"
 
-const std::string DiscDB::Disc::Fields::Id           = "_id";
-const std::string DiscDB::Disc::Fields::DiscId       = "discId";
-const std::string DiscDB::Disc::Fields::Artist       = "artist";
-const std::string DiscDB::Disc::Fields::Title        = "title";
-const std::string DiscDB::Disc::Fields::Year         = "year";
-const std::string DiscDB::Disc::Fields::Genre        = "genre";
-const std::string DiscDB::Disc::Fields::Length       = "length";
-const std::string DiscDB::Disc::Fields::Tracks       = "tracks";
-const std::string DiscDB::Disc::Fields::ExtendedData = "extendedData";
-const std::string DiscDB::Disc::Fields::PlayOrder    = "playOrder";
+const std::string DiscDB::Disc::Properties::Id           = "_id";
+const std::string DiscDB::Disc::Properties::DiscId       = "discId";
+const std::string DiscDB::Disc::Properties::Artist       = "artist";
+const std::string DiscDB::Disc::Properties::Title        = "title";
+const std::string DiscDB::Disc::Properties::Year         = "year";
+const std::string DiscDB::Disc::Properties::Genre        = "genre";
+const std::string DiscDB::Disc::Properties::Length       = "length";
+const std::string DiscDB::Disc::Properties::Tracks       = "tracks";
+const std::string DiscDB::Disc::Properties::ExtendedData = "extendedData";
+const std::string DiscDB::Disc::Properties::PlayOrder    = "playOrder";
 
 DiscDB::Disc::Disc()
     : _year(0)
@@ -71,27 +71,27 @@ std::string DiscDB::Disc::to_json() const {
     Json::Value value;
 
     if (!_id.empty())
-        value[Fields::Id] = _id;
+        value[Properties::Id] = _id;
 
     std::stringstream sstream;
     sstream.imbue(std::locale("C"));
     sstream << std::hex << _disc_id;
-    value[Fields::DiscId] = sstream.str();
+    value[Properties::DiscId] = sstream.str();
 
     if (!_artist.empty())
-        value[Fields::Artist] = _artist;
+        value[Properties::Artist] = _artist;
 
     if (!_title.empty())
-        value[Fields::Title] = _title;
+        value[Properties::Title] = _title;
 
     if (_year != 0) {
-        value[Fields::Year] = _year;
+        value[Properties::Year] = _year;
     }
 
     if (!_genre.empty())
-        value[Fields::Genre] = _genre;
+        value[Properties::Genre] = _genre;
 
-    value[Fields::Length] = _length;
+    value[Properties::Length] = _length;
 
     Json::Value tracks;
     for (const Track& track : _tracks) {
@@ -101,16 +101,16 @@ std::string DiscDB::Disc::to_json() const {
 
         tracks.append(value);
     }
-    value[Fields::Tracks] = tracks;
+    value[Properties::Tracks] = tracks;
 
     if (!_extended_data.empty())
-        value[Fields::ExtendedData] = _extended_data;
+        value[Properties::ExtendedData] = _extended_data;
 
     Json::Value play_order;
     for (const unsigned int track : _play_order)
         play_order.append(track);
     if (!_play_order.empty())
-        value[Fields::PlayOrder] = play_order;
+        value[Properties::PlayOrder] = play_order;
 
     std::stringstream ss;
     ss << value;
@@ -127,29 +127,29 @@ DiscDB::Disc DiscDB::Disc::from_json(const std::string& json) {
 
     unsigned int disc_id;
     std::stringstream sstream;
-    sstream << std::hex  << value[Fields::DiscId].asString();
+    sstream << std::hex  << value[Properties::DiscId].asString();
     sstream >> disc_id;
 
     builder
-    .id(value[Fields::Id].asString())
+    .id(value[Properties::Id].asString())
     .disc_id(disc_id)
-    .artist(value[Fields::Artist].asString())
-    .title(value[Fields::Title].asString())
-    .year(value[Fields::Year].asUInt())
-    .genre(value[Fields::Genre].asString())
-    .length(value[Fields::Length].asUInt())
-    .extended_data(value[Fields::ExtendedData].asString());
+    .artist(value[Properties::Artist].asString())
+    .title(value[Properties::Title].asString())
+    .year(value[Properties::Year].asUInt())
+    .genre(value[Properties::Genre].asString())
+    .length(value[Properties::Length].asUInt())
+    .extended_data(value[Properties::ExtendedData].asString());
 
-    for (unsigned int i = 0; i < value[Fields::Tracks].size(); i++) {
+    for (unsigned int i = 0; i < value[Properties::Tracks].size(); i++) {
         std::stringstream ss;
-        ss << value[Fields::Tracks][i];
+        ss << value[Properties::Tracks][i];
         builder.track(Track::from_json(ss.str()));
     }
 
-    if (!value[Fields::PlayOrder].isNull()) {
+    if (!value[Properties::PlayOrder].isNull()) {
         std::vector<unsigned int> play_order;
-        for (unsigned int i = 0; i < value[Fields::PlayOrder].size(); i++)
-            play_order.push_back(value[Fields::Tracks][i].asUInt());
+        for (unsigned int i = 0; i < value[Properties::PlayOrder].size(); i++)
+            play_order.push_back(value[Properties::Tracks][i].asUInt());
         builder.play_order(play_order);
     }
 
