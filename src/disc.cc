@@ -1,3 +1,9 @@
+/**
+ * @file disc.cc
+ * @author Nir Jacobson
+ * @date 2026-04-06
+ */
+
 #include "disc.h"
 
 const std::string DiscDB::Disc::Properties::Id           = "_id";

@@ -1,4 +1,10 @@
-#include "discdb.h"
+/**
+ * @file discdb.cc
+ * @author Nir Jacobson
+ * @date 2026-04-06
+ */
+
+ #include "discdb.h"
 
 DiscDB::Disc DiscDB::find(const ::DiscDB::Disc& disc) {
     const cURLpp::Cleanup cleanup;

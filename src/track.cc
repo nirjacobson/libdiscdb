@@ -1,8 +1,14 @@
+/**
+ * @file track.cc
+ * @author Nir Jacobson
+ * @date 2026-04-06
+ */
+
 #include "track.h"
 
-const std::string DiscDB::Track::Fields::FrameOffset  = "frameOffset";
-const std::string DiscDB::Track::Fields::Title        = "title";
-const std::string DiscDB::Track::Fields::ExtendedData = "extendedData";
+const std::string DiscDB::Track::Properties::FrameOffset  = "frameOffset";
+const std::string DiscDB::Track::Properties::Title        = "title";
+const std::string DiscDB::Track::Properties::ExtendedData = "extendedData";
 
 unsigned int DiscDB::Track::frame_offset() const {
     return _frame_offset;
@@ -19,13 +25,13 @@ const std::string& DiscDB::Track::extended_data() const {
 std::string DiscDB::Track::to_json() const {
     Json::Value value;
 
-    value[Fields::FrameOffset] = _frame_offset;
+    value[Properties::FrameOffset] = _frame_offset;
 
     if (!_title.empty())
-        value[Fields::Title] = _title;
+        value[Properties::Title] = _title;
 
     if (!_extended_data.empty())
-        value[Fields::ExtendedData] = _extended_data;
+        value[Properties::ExtendedData] = _extended_data;
 
     std::stringstream ss;
     ss << value;
@@ -41,9 +47,9 @@ DiscDB::Track DiscDB::Track::from_json(const std::string& json) {
     Builder builder;
 
     builder
-    .frame_offset(value[Fields::FrameOffset].asUInt())
-    .title(value[Fields::Title].asString())
-    .extended_data(value[Fields::ExtendedData].asString());
+    .frame_offset(value[Properties::FrameOffset].asUInt())
+    .title(value[Properties::Title].asString())
+    .extended_data(value[Properties::ExtendedData].asString());
 
     return builder.build();
 }

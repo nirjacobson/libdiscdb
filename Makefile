@@ -8,6 +8,8 @@ LIB_FILE     = lib${LIB}.so
 LIB_DIR      = /usr/lib64
 INCLUDE_DIR  = /usr/include/${LIB}
 
+.PHONY: docs
+
 all: build/ ${LIB_FILE}
 
 docs:

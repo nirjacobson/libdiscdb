@@ -1,3 +1,9 @@
+/**
+ * @file discdb.h
+ * @author Nir Jacobson
+ * @date 2026-04-06
+ */
+
 #ifndef DISCDB_H
 #define DISCDB_H
 

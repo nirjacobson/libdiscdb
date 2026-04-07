@@ -1,3 +1,9 @@
+/**
+ * @file disc.h
+ * @author Nir Jacobson
+ * @date 2026-04-06
+ */
+
 #ifndef DISC_H
 #define DISC_H
 
@@ -11,10 +17,7 @@
 
 namespace DiscDB {
 
-    /**
-     * @brief The Disc class
-     * @details The Disc class represents one disc record in the DiscDB database.
-    */
+    /// @brief One DiscDB document.
     class Disc {
 
         public:
@@ -63,35 +66,27 @@ namespace DiscDB {
             const std::string& extended_data() const;
             const std::vector<unsigned int>& play_order() const;
 
-            /**
-             * @name JSON Conversion Methods
-             * 
-             * @{
-             */
+            /// @name JSON Conversion Methods
+            /// @{
             std::string to_json() const;
             static Disc from_json(const std::string& json);
-            /**
-             * @}
-             */
+            /// @}
 
         private:
 
-            std::string _id;
-            unsigned int _disc_id;
-            std::string _artist;
-            std::string _title;
-            unsigned int _year;
-            std::string _genre;
-            unsigned int _length;
-            std::vector<Track> _tracks;
-            std::string _extended_data;
-            std::vector<unsigned int> _play_order;
+            std::string _id;                       ///< Unique identifier
+            unsigned int _disc_id;                 ///< Structural hash
+            std::string _artist;                   ///< Album artist
+            std::string _title;                    ///< Album title
+            unsigned int _year;                    ///< Release year
+            std::string _genre;                    ///< Album genre
+            unsigned int _length;                  ///< Full length in seconds
+            std::vector<Track> _tracks;            ///< Album tracks
+            std::string _extended_data;            ///< Footnotes, etc.
+            std::vector<unsigned int> _play_order; ///< If different from the track order
     };
 
-    /**
-     * @brief The Disc builder
-     * @details Use the builder to construct a Disc object with your chosen property values.
-    */
+    /// @brief The Disc builder
     class Disc::Builder {
 
         public:
@@ -114,10 +109,7 @@ namespace DiscDB {
             Disc _disc;
     };
 
-    /**
-     * @brief Disc properties
-     * @details These constants are used to access property values in the JSON representation of a Disc.
-    */
+    /// Disc JSON property names
     class Disc::Properties {
         public:
             static const std::string Id;
