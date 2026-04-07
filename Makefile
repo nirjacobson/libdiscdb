@@ -11,6 +11,7 @@ INCLUDE_DIR  = /usr/include/${LIB}
 all: build/ ${LIB_FILE}
 
 docs:
+	rm -rf docs/
 	doxygen doxygen.txt
 
 install: ${LIB_FILE}
