@@ -17,7 +17,7 @@
 
 namespace DiscDB {
 
-    /// @brief One DiscDB document.
+    /// @brief One DiscDB document
     class Disc {
 
         public:
@@ -26,33 +26,25 @@ namespace DiscDB {
             class Builder;
             class Properties;
 
+            /// @name  Audio Frames
+            /// @brief A frame is a duration of audio.
             /**
-             * @name  Audio Frames
-             * @brief A frame is a duration of audio.
              * @see   <a href="https://ftp.osuosl.org/pub/netwinder/devteam/andrewm/udf/docs/Glossary_of_CD_terms.pdf"
              *            target="_blank">
              *            A Glossary Of CD And CD-ROM Terms.
              *        </a>
-             * @{
              */
-
-             /**
-             * @brief There are 75 audio frames per second.
-             */
+             /// @{
+             /// @brief There are 75 audio frames per second.
             static constexpr const unsigned int FRAMES_PER_SECOND = 75;
 
-            /**
-             * @brief A convenience method.
-             * @param [in] frames must be a multiple of @ref FRAMES_PER_SECOND.
-             * 
-             * @{
-             */
+            /// @brief A convenience method.
+            /// @param [in] frames must be a multiple of @ref FRAMES_PER_SECOND.
+            /// @{
             static inline unsigned int frames_to_seconds(unsigned int frames) {
                 return frames / FRAMES_PER_SECOND;
             }
-            /**
-             * @}
-             */
+            /// @}
 
             const std::string& id() const;
             unsigned int disc_id() const;
