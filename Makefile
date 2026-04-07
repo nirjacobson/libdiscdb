@@ -10,6 +10,9 @@ INCLUDE_DIR  = /usr/include/${LIB}
 
 all: build/ ${LIB_FILE}
 
+docs:
+	doxygen doxygen.txt
+
 install: ${LIB_FILE}
 	install -D $< -t ${DESTDIR}${LIB_DIR}
 	install -D src/*.h -t ${DESTDIR}${INCLUDE_DIR}
