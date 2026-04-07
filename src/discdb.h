@@ -23,14 +23,14 @@
 namespace DiscDB {
     const std::string BaseURL = "https://discdb.nirjacobson.com/api/v1.0";
 
-    /// @brief Find a Disc given the minimal set of its information.
-    /// @param [in] disc The minimal disc information. This is mostly discId and tracks.frameOffset.
-    /// @return A fully populated Disc object (album information).
+    /// @brief Find a Disc given the minimal set of its information
+    /// @param [in] disc The minimal disc information. This is mostly discId and tracks.frameOffset
+    /// @return A fully populated Disc object (album information)
     Disc find(const Disc& disc);
 
-    /// @brief Save a Disc to DiscDB.
-    /// @param [in] disc A fully populated Disc object (album information).
-    /// @return The same Disc object with the _id field populated.
+    /// @brief Save a Disc to DiscDB
+    /// @param [in] disc A fully populated Disc object (album information)
+    /// @return The same Disc object with the _id field populated
     Disc create(const Disc& disc);
 }
 
