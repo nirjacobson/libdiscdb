@@ -21,6 +21,7 @@ namespace DiscDB {
     class Disc {
 
         public:
+            /// @brief Disc constructor.
             Disc();
 
             class Builder;
@@ -55,7 +56,11 @@ namespace DiscDB {
             unsigned int year() const;                                  ///< Getter for ::_year.
             const std::string& genre() const;                           ///< Getter for ::_genre.
             unsigned int length() const;                                ///< Getter for ::_length.
-            unsigned int track_length(const unsigned int track) const;  ///< Getter for ::_track_length.
+
+            /// @brief Returns the length in seconds of the given track.
+            /// @param [in] track The 1-based index of the track.
+            unsigned int track_length(const unsigned int track) const;
+            
             const std::vector<Track>& tracks() const;                   ///< Getter for ::_tracks.
             const std::string& extended_data() const;                   ///< Getter for ::_extended_data.
             const std::vector<unsigned int>& play_order() const;        ///< Getter for ::_play_order.
@@ -63,7 +68,12 @@ namespace DiscDB {
 
             /// @name JSON Conversion Methods
             /// @{
+
+            /// @brief Converts the Disc to JSON.
             std::string to_json() const;
+            /// @brief Builds the Disc from JSON.
+            /// @param [in] json The input JSON. 
+            /// @return The Disc.
             static Disc from_json(const std::string& json);
             /// @}
 

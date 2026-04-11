@@ -25,9 +25,9 @@ namespace DiscDB {
 
             /// @name Track Getters
             /// @{ 
-            unsigned int frame_offset() const;          ///< Getter for _frame_offset.
-            const std::string& title() const;           ///< Getter for _title.
-            const std::string& extended_data() const;   ///< Getter for _extended_data.
+            unsigned int frame_offset() const;          ///< Getter for ::_frame_offset.
+            const std::string& title() const;           ///< Getter for ::_title.
+            const std::string& extended_data() const;   ///< Getter for ::_extended_data.
             /// @}
 
             /// @name JSON Conversion Methods
@@ -45,7 +45,7 @@ namespace DiscDB {
 
             /// @brief The offset of the track on the disc in frames.
             unsigned int _frame_offset;
-            std::string _title;          ///< Track title (as it appears on the leaf)
+            std::string _title;          ///< Track title (as it appears on the leaf).
             std::string _extended_data;  ///< Footnotes, etc.
     };
 
