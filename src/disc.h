@@ -46,17 +46,20 @@ namespace DiscDB {
             }
             /// @}
 
-            const std::string& id() const;
-            unsigned int disc_id() const;
-            const std::string& artist() const;
-            const std::string& title() const;
-            unsigned int year() const;
-            const std::string& genre() const;
-            unsigned int length() const;
-            unsigned int track_length(const unsigned int track) const;
-            const std::vector<Track>& tracks() const;
-            const std::string& extended_data() const;
-            const std::vector<unsigned int>& play_order() const;
+            /// @name Disc Getters
+            /// @{ 
+            const std::string& id() const;                              ///< Getter for ::_id.
+            unsigned int disc_id() const;                               ///< Getter for ::_disc_id.
+            const std::string& artist() const;                          ///< Getter for ::_artist.
+            const std::string& title() const;                           ///< Getter for ::_title.
+            unsigned int year() const;                                  ///< Getter for ::_year.
+            const std::string& genre() const;                           ///< Getter for ::_genre.
+            unsigned int length() const;                                ///< Getter for ::_length.
+            unsigned int track_length(const unsigned int track) const;  ///< Getter for ::_track_length.
+            const std::vector<Track>& tracks() const;                   ///< Getter for ::_tracks.
+            const std::string& extended_data() const;                   ///< Getter for ::_extended_data.
+            const std::vector<unsigned int>& play_order() const;        ///< Getter for ::_play_order.
+            /// @}
 
             /// @name JSON Conversion Methods
             /// @{
@@ -83,22 +86,22 @@ namespace DiscDB {
 
         public:
 
-            Builder& id(const std::string& id);
-            Builder& disc_id(const unsigned int disc_id);
-            Builder& artist(const std::string& artist);
-            Builder& title(const std::string& title);
-            Builder& year(const unsigned int year);
-            Builder& genre(const std::string& genre);
-            Builder& length(const unsigned int length);
-            Builder& track(const Track& track);
-            Builder& extended_data(const std::string& extended_data);
-            Builder& play_order(const std::vector<unsigned int>& play_order);
-            Builder& calculate_disc_id();
-            Disc build() const;
+            Builder& id(const std::string& id);                                 ///< Sets Disc::_id.
+            Builder& disc_id(const unsigned int disc_id);                       ///< Sets Disc::_disc_id.
+            Builder& artist(const std::string& artist);                         ///< Sets Disc::_artist.
+            Builder& title(const std::string& title);                           ///< Sets Disc::_title.
+            Builder& year(const unsigned int year);                             ///< Sets Disc::_year.
+            Builder& genre(const std::string& genre);                           ///< Sets Disc::_genre.
+            Builder& length(const unsigned int length);                         ///< Sets Disc::_length.
+            Builder& track(const Track& track);                                 ///< Adds to Disc::_tracks.
+            Builder& extended_data(const std::string& extended_data);           ///< Sets Disc::_extended_data.
+            Builder& play_order(const std::vector<unsigned int>& play_order);   ///< Sets Disc::_play_order.
+            Builder& calculate_disc_id();                                       ///< Calculates the disc ID.
+            Disc build() const;                                                 ///< Builds the Disc.
 
         private:
 
-            Disc _disc;
+            Disc _disc;                                                         ///< Working Disc.
     };
 
     /// Disc JSON property names

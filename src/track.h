@@ -23,13 +23,21 @@ namespace DiscDB {
             class Builder;
             class Properties;
 
-            unsigned int frame_offset() const;
-            const std::string& title() const;
-            const std::string& extended_data() const;
+            /// @name Track Getters
+            /// @{ 
+            unsigned int frame_offset() const;          ///< Getter for _frame_offset.
+            const std::string& title() const;           ///< Getter for _title.
+            const std::string& extended_data() const;   ///< Getter for _extended_data.
+            /// @}
 
             /// @name JSON Conversion Methods
             /// @{
+            
+            /// @brief Converts the Track to JSON.
             std::string to_json() const;
+            /// @brief Builds the Track from JSON.
+            /// @param [in] json The input JSON. 
+            /// @return The Track.
             static Track from_json(const std::string& json);
             /// @}
 
@@ -46,13 +54,13 @@ namespace DiscDB {
 
         public:
 
-            Builder& frame_offset(const unsigned int frame_offset);
-            Builder& title(const std::string& title);
-            Builder& extended_data(const std::string& extended_data);
-            Track build() const;
+            Builder& frame_offset(const unsigned int frame_offset);     ///< Sets Track::_frame_offset.
+            Builder& title(const std::string& title);                   ///< Sets Track::_title.
+            Builder& extended_data(const std::string& extended_data);   ///< Sets Track::_extended_data.
+            Track build() const;                                        ///< Builds the Track.
 
         private:
-            Track _track;
+            Track _track;                                               ///< Working Track.
     };
 
     /// Track JSON property names
